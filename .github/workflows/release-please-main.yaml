@@ -1,0 +1,25 @@
+# Copyright 2023 Dimitri Koshkin. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+name: release-please-main
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: google-github-actions/release-please-action@v3.7
+        id: release-please
+        with:
+          release-type: go
+          package-name: exec-assistant
+          pull-request-title-pattern: "build${scope}: release${component} ${version}"
+          changelog-notes-type: github

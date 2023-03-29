@@ -1,0 +1,16 @@
+# Copyright 2023 Dimitri Koshkin. All rights reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+name: "conventional-pr-title"
+on:
+  pull_request_target:
+    types:
+      - opened
+      - edited
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: amannn/action-semantic-pull-request@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
