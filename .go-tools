@@ -1,0 +1,4 @@
+github.com/oligot/go-mod-upgrade@v0.9.1
+gotest.tools/gotestsum@v1.9.0
+github.com/segmentio/golines@v0.11.0
+github.com/rhysd/actionlint/cmd/actionlint@v1.6.23
