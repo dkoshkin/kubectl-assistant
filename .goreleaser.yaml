@@ -40,9 +40,6 @@ builds:
       - amd64
       - arm64
     mod_timestamp: '{{ .CommitTimestamp }}'
-    hooks:
-      post:
-        - cmd: make SKIP_UPX={{ if index .Env "SKIP_UPX" }}{{ .Env.SKIP_UPX }}{{ else }}{{ .IsSnapshot }}{{ end }} GOOS={{ .Os }} GOARCH={{ .Arch }} UPX_TARGET={{ .Path }} upx
 archives:
   - name_template: '{{ .ProjectName }}_v{{trimprefix .Version "v"}}_{{ .Os }}_{{ .Arch }}'
     format_overrides:
