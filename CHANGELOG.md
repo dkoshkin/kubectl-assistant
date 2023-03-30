@@ -4,6 +4,14 @@
 
 
 
+**Full Changelog**: https://github.com/dkoshkin/kubectl-assistant/compare/v0.1.3...v0.1.4
+
+## Changelog
+
+<!-- Release notes generated using configuration in .github/release.yaml at main -->
+
+
+
 **Full Changelog**: https://github.com/dkoshkin/kubectl-assistant/compare/v0.1.2...v0.1.3
 
 ## Changelog
