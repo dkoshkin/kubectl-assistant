@@ -1,5 +1,5 @@
-github.com/PullRequestInc/go-gpt3 v1.1.14 h1:lzdgdcM51mCE8+hcGA5bEmZEGOCZI3R/RaaeKceLLd8=
-github.com/PullRequestInc/go-gpt3 v1.1.14/go.mod h1:F9yzAy070LhkqHS2154/IH0HVj5xq5g83gLTj7xzyfw=
+github.com/PullRequestInc/go-gpt3 v1.1.15 h1:pidXZbpqZVW0bp8NBNKDb+/++6PFdYfht9vw2CVpaUs=
+github.com/PullRequestInc/go-gpt3 v1.1.15/go.mod h1:F9yzAy070LhkqHS2154/IH0HVj5xq5g83gLTj7xzyfw=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
