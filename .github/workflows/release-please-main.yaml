@@ -10,11 +10,15 @@ on:
 
 permissions:
   contents: write
+  packages: write
   pull-requests: write
 
 jobs:
   release-please:
     runs-on: ubuntu-22.04
+    # Map a step output to a job output
+    outputs:
+      release_created: ${{ steps.release-please.outputs.release_created }}
     steps:
       - uses: google-github-actions/release-please-action@v3.7
         id: release-please
@@ -23,3 +27,9 @@ jobs:
           package-name: exec-assistant
           pull-request-title-pattern: "build${scope}: release${component} ${version}"
           changelog-notes-type: github
+
+  release-tag:
+    needs: release-please
+    uses: ./.github/workflows/release-tag.yaml
+    secrets: inherit
+    if: ${{ needs.release-please.outputs.release_created }}
