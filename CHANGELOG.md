@@ -2,6 +2,14 @@
 
 <!-- Release notes generated using configuration in .github/release.yaml at main -->
 
+
+
+**Full Changelog**: https://github.com/dkoshkin/kubectl-assistant/compare/v0.1.0...v0.1.1
+
+## Changelog
+
+<!-- Release notes generated using configuration in .github/release.yaml at main -->
+
 ## What's Changed
 ### Other Changes
 * feat: Add initial kubectl-assistant implementation by @dkoshkin in https://github.com/dkoshkin/kubectl-assistant/pull/1
