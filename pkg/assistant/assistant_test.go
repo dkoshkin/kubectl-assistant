@@ -19,19 +19,26 @@ func Test_findCodeSnippet(t *testing.T) {
 	}{
 		{
 			name:          "response with command",
-			response:      "To list all nodes, run the command:\n\n```\nexec get nodes\n```",
-			expectCommand: "exec get nodes",
+			response:      "To list all nodes, run the command:\n\n```\nkubectl get nodes\n```",
+			expectCommand: "kubectl get nodes",
+		},
+		{
+			name:          "response with command wrapped in ```bash",
+			response:      "To list all nodes, run the command:\n\n```bash\nkubectl get nodes\n```",
+			expectCommand: "kubectl get nodes",
 		},
 		{
 			name: "response without a command",
 			//nolint:lll // Long lines are fine in tests
-			response:  "Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It enables operators to manage applications across multiple nodes, and provides mechanisms for the automated deployment, scaling, and recovery of instances of those applications.",
-			expectErr: fmt.Errorf("did not find opening ``` in previous output"),
+			response: "Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It enables operators to manage applications across multiple nodes, and provides mechanisms for the automated deployment, scaling, and recovery of instances of those applications.",
+			expectErr: fmt.Errorf(
+				"did not find opening string in previous output, looking for: ```bash, ```shell, ```",
+			),
 		},
 	}
 	for _, tt := range tests {
 		gotCommand, gotErr := findCodeSnippet(tt.response)
-		assert.Equal(t, gotErr, tt.expectErr)
-		assert.Equal(t, gotCommand, tt.expectCommand)
+		assert.Equal(t, tt.expectErr, gotErr)
+		assert.Equal(t, tt.expectCommand, gotCommand)
 	}
 }
