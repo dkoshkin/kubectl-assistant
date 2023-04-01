@@ -12,7 +12,7 @@ It aims to help find `kubectl` commands for what you are trying to accomplish, w
 
 - A running Kubernetes cluster
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) in your `PATH`
-- [asdf](https://asdf-vm.com/) and make for building locally.
+- [asdf](https://asdf-vm.com/) and `make` for building locally.
 
 ## Usage Instructions
 
