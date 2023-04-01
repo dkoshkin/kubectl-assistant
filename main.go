@@ -17,7 +17,8 @@ import (
 )
 
 const (
-	apiKeyEnv = "API_KEY"
+	//nolint:gosec // Not a hardcoded credentials
+	apiKeyEnv = "OPENAI_API_KEY"
 )
 
 func main() {
