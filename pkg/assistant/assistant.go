@@ -89,23 +89,22 @@ func findCodeSnippet(response string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	end := strings.Index(response[start:], "```")
-	if end == -1 {
-		return "", fmt.Errorf("did not find closing ``` in previous output")
+	end, err := findSnippetClosing(response[start:])
+	if err != nil {
+		return "", err
 	}
-	end--
 
 	command := strings.TrimSpace(response[start : start+end])
 
 	return command, nil
 }
 
-func findSnippetOpening(response string) (int, error) {
+func findSnippetOpening(str string) (int, error) {
 	validStarts := []string{"```bash", "```shell", "```"}
 
 	start := -1
 	for _, substr := range validStarts {
-		start = strings.Index(response, substr)
+		start = strings.Index(str, substr)
 		if start != -1 {
 			start += len(substr)
 			break
@@ -119,4 +118,17 @@ func findSnippetOpening(response string) (int, error) {
 	}
 
 	return start, nil
+}
+
+func findSnippetClosing(str string) (int, error) {
+	end := strings.Index(str, "```")
+	if end == -1 {
+		return end, fmt.Errorf("did not find closing ``` in previous output")
+	}
+	// exclude a newline character
+	if str[end] == '\n' {
+		end--
+	}
+
+	return end, nil
 }
