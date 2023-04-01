@@ -12,6 +12,7 @@ It aims to help find `kubectl` commands for what you are trying to accomplish, w
 
 - A running Kubernetes cluster
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) in your `PATH`
+- [asdf](https://asdf-vm.com/) and make for building locally.
 
 ## Usage Instructions
 
@@ -74,3 +75,23 @@ After typing in a question in the prompt you will see a response, many of them h
 -   Type in another question to get additional responses. (NOTE, unlike ChatGPT the conversation threads are not contextual, if you want more detail for a previois response, you must re-ask the question).
 
 -   Type in `kubectl ...` commands directly to have them execute against the cluster.
+
+## Dev Instructions
+
+-   Built it, the binary for your OS will be placed in `./dist`, e.g. `./dist/kubectl-assistant_darwin_arm64/kubectl-assisant`:
+
+    ```shell
+    make build-snapshot
+    ```
+
+-   Test it:
+
+    ```shell
+    make test
+    ```
+
+-   Lint it:
+
+    ```shell
+    make lint
+    ```
