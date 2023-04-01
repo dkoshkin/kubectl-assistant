@@ -85,12 +85,10 @@ func (a *Runner) getKubectlCommand() (string, error) {
 }
 
 func findCodeSnippet(response string) (string, error) {
-	start := strings.Index(response, "```")
-	if start == -1 {
-		return "", fmt.Errorf("did not find opening ``` in previous output")
+	start, err := findSnippetOpening(response)
+	if err != nil {
+		return "", err
 	}
-	start += 3
-
 	end := strings.Index(response[start:], "```")
 	if end == -1 {
 		return "", fmt.Errorf("did not find closing ``` in previous output")
@@ -100,4 +98,25 @@ func findCodeSnippet(response string) (string, error) {
 	command := strings.TrimSpace(response[start : start+end])
 
 	return command, nil
+}
+
+func findSnippetOpening(response string) (int, error) {
+	validStarts := []string{"```bash", "```shell", "```"}
+
+	start := -1
+	for _, substr := range validStarts {
+		start = strings.Index(response, substr)
+		if start != -1 {
+			start += len(substr)
+			break
+		}
+	}
+	if start == -1 {
+		return start, fmt.Errorf(
+			"did not find opening string in previous output, looking for: %s",
+			strings.Join(validStarts, ", "),
+		)
+	}
+
+	return start, nil
 }

@@ -43,7 +43,7 @@ It aims to help find `kubectl` commands for what you are trying to accomplish, w
     To list all control-plane nodes in your Kubernetes cluster, you can use the following exec command:
 
     ```&nbsp;
-    exec get nodes --selector=node-role.kubernetes.io/control-plane
+    kubectl get nodes --selector=node-role.kubernetes.io/control-plane
     ```&nbsp;
 
     This command will display a list of all the control-plane nodes in the cluster. The `--selector=node-role.kubernetes.io/control-plane` flag filters the list of nodes based on a label selector that is automatically applied to control-plane nodes by default when they are registered with the cluster.
@@ -52,7 +52,7 @@ It aims to help find `kubectl` commands for what you are trying to accomplish, w
     NAME                 STATUS   ROLES           AGE     VERSION
     kind-control-plane   Ready    control-plane   3d16h   v1.25.3
 
-    > exec get pods -A
+    > kubectl get pods -A
     NAMESPACE            NAME                                         READY   STATUS    RESTARTS   AGE
     default              nginx                                        1/1     Running   0          3d16h
     default              nginx-56fd7f4d49-v67dd                       1/1     Running   0          3d15h
