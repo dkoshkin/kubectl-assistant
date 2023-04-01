@@ -24,13 +24,14 @@ It aims to help find `kubectl` commands for what you are trying to accomplish, w
 
 4.  Run `kubectl assistant`
 
-    ```shell
-    $ exec assistant
+    ```txt
+    $ kubectl assistant
     Begin by typing what you want to accomplish in your Kubernetes cluster and then hit "Enter".
     For example:
       List all control-plane Nodes
-      List all Pods that don't have an ImagePullPolicy of Always
+      Get Kubernetes versions for all Nodes
       Create deployment named nginx, using image nginx and ports 80 and 443
+      Find all objects with label app=nginx
 
     You will then see some text output and in most cases either a exec command or some YAML output.
     If the command looks reasonable to you, type in "k" and then hit "Enter" to execute it against the cluster.
@@ -43,9 +44,9 @@ It aims to help find `kubectl` commands for what you are trying to accomplish, w
     ==============================================================================================================================================================================================================
     To list all control-plane nodes in your Kubernetes cluster, you can use the following exec command:
 
-    ```&nbsp;
+    ```bash
     kubectl get nodes --selector=node-role.kubernetes.io/control-plane
-    ```&nbsp;
+    ``
 
     This command will display a list of all the control-plane nodes in the cluster. The `--selector=node-role.kubernetes.io/control-plane` flag filters the list of nodes based on a label selector that is automatically applied to control-plane nodes by default when they are registered with the cluster.
 
