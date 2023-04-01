@@ -20,8 +20,9 @@ const (
 	welcomeText = `Begin by typing what you want to accomplish in your Kubernetes cluster and then hit "Enter".
 For example:
   List all control-plane Nodes
-  List all Pods that don't have an ImagePullPolicy of Always
+  Get Kubernetes versions for all Nodes
   Create deployment named nginx, using image nginx and ports 80 and 443
+  Find all objects with label app=nginx
 
 You will then see some text output and in most cases either a exec command or some YAML output.
 If the command looks reasonable to you, type in "k" and then hit "Enter" to execute it against the cluster.
