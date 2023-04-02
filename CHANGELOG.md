@@ -2,6 +2,17 @@
 
 <!-- Release notes generated using configuration in .github/release.yaml at main -->
 
+## What's Changed
+### Other Changes
+* ci: Fix asdf setup in Github Actions by @dkoshkin in https://github.com/dkoshkin/kubectl-assistant/pull/25
+
+
+**Full Changelog**: https://github.com/dkoshkin/kubectl-assistant/compare/v0.1.4...v0.1.5
+
+## Changelog
+
+<!-- Release notes generated using configuration in .github/release.yaml at main -->
+
 
 
 **Full Changelog**: https://github.com/dkoshkin/kubectl-assistant/compare/v0.1.3...v0.1.4
