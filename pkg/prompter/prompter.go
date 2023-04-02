@@ -62,7 +62,6 @@ func (p *Prompter) Loop() error {
 	reader := bufio.NewReader(p.in)
 
 	// continue until user exits
-	//nolint:gocritic // TODO refactor to a switch
 	for {
 		fmt.Fprint(p.out, "\n> ")
 
@@ -73,7 +72,9 @@ func (p *Prompter) Loop() error {
 		}
 		prompt = strings.TrimSpace(strings.ReplaceAll(prompt, "\n", ""))
 
-		if p.execRunner.IsKubectlCommand(prompt) { // run exec commands directly if provided by user
+		// convert if else to switch
+		switch {
+		case p.execRunner.IsKubectlCommand(prompt): // run exec commands directly if provided by user
 			err = p.execRunner.Run(prompt)
 			if err != nil {
 				fmt.Fprintln(
@@ -82,10 +83,12 @@ func (p *Prompter) Loop() error {
 					err,
 				)
 			}
-			continue
-		} else if prompt == "k" { // run the exec command from the previous response
+		case prompt == "k": // ignore if a user just hits "ENTER"
 			if !p.assistantRunner.CanRunKubectlCommand() {
-				fmt.Fprintln(p.out, "Previous output did not contain any commands to run. Please try again")
+				fmt.Fprintln(
+					p.out,
+					"Previous output did not contain any commands to run. Please try again",
+				)
 				continue
 			}
 			err = p.assistantRunner.RunKubectlCommand()
@@ -94,20 +97,20 @@ func (p *Prompter) Loop() error {
 				continue
 			}
 			continue
-		} else if prompt == "" { // ignore if a user just hits "ENTER"
+		case prompt == "": // ignore if a user just hits "ENTER"
 			continue
-		}
+		default:
+			// get the response from the assistant
+			resp, err := p.assistantRunner.GetResponse(ctx, prompt)
+			if err != nil {
+				fmt.Fprintln(p.out, "An error occurred generating output. Please try again", err)
+				continue
+			}
 
-		// get the response from the assistant
-		resp, err := p.assistantRunner.GetResponse(ctx, prompt)
-		if err != nil {
-			fmt.Fprintln(p.out, "An error occurred generating output. Please try again", err)
-			continue
+			// print a separator and then the response from the assistant
+			fmt.Fprintln(p.out, strings.Repeat("=", terminalWidth()))
+			fmt.Fprintln(p.out, resp)
 		}
-
-		// print a separator and then the response from the assistant
-		fmt.Fprintln(p.out, strings.Repeat("=", terminalWidth()))
-		fmt.Fprintln(p.out, resp)
 	}
 }
 
