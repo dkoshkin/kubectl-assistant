@@ -2,6 +2,14 @@
 
 <!-- Release notes generated using configuration in .github/release.yaml at main -->
 
+
+
+**Full Changelog**: https://github.com/dkoshkin/kubectl-assistant/compare/v0.1.3...v0.1.4
+
+## Changelog
+
+<!-- Release notes generated using configuration in .github/release.yaml at main -->
+
 ## What's Changed
 ### Fixes 🔧
 * fix: Handle snippets without a newline by @dkoshkin in https://github.com/dkoshkin/kubectl-assistant/pull/20
