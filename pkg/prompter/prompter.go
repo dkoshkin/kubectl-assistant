@@ -27,7 +27,7 @@ For example:
 You will then see some text output and in most cases either a exec command or some YAML output.
 If the command looks reasonable to you, type in "k" and then hit "Enter" to execute it against the cluster.
 
-You can also type "exec ..." to execute a custom command.
+You can also type "kubectl ..." to execute a custom command.
 
 Hit CTRL+C to exit.
 `
@@ -56,7 +56,7 @@ func New(
 }
 
 func (p *Prompter) Loop() error {
-	fmt.Print(welcomeText)
+	fmt.Fprint(p.out, welcomeText)
 
 	ctx := context.Background()
 	reader := bufio.NewReader(p.in)

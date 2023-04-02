@@ -7,6 +7,7 @@ go 1.20
 
 require (
 	github.com/PullRequestInc/go-gpt3 v1.1.15
+	github.com/golang/mock v1.6.0
 	github.com/stretchr/testify v1.8.2
 	golang.org/x/term v0.6.0
 )
