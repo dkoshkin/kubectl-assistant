@@ -18,7 +18,13 @@ const (
 	systemPrompt = "You should return kubectl commands and minimal explanation, do not include sample output. All code snippets should be surrounded by ```"
 )
 
-type Runner struct {
+type Runner interface {
+	GetResponse(ctx context.Context, prompt string) (string, error)
+	CanRunKubectlCommand() bool
+	RunKubectlCommand() error
+}
+
+type GPT3Runner struct {
 	gpt3Client gpt3.Client
 	execRunner exec.Runner
 
@@ -26,13 +32,13 @@ type Runner struct {
 }
 
 func New(gpt3APIKey string, runner exec.Runner) Runner {
-	return Runner{
+	return &GPT3Runner{
 		gpt3Client: gpt3.NewClient(gpt3APIKey),
 		execRunner: runner,
 	}
 }
 
-func (a *Runner) GetResponse(ctx context.Context, prompt string) (string, error) {
+func (a *GPT3Runner) GetResponse(ctx context.Context, prompt string) (string, error) {
 	resp, err := a.gpt3Client.ChatCompletion(ctx, gpt3.ChatCompletionRequest{
 		Messages: []gpt3.ChatCompletionRequestMessage{
 			{
@@ -55,14 +61,14 @@ func (a *Runner) GetResponse(ctx context.Context, prompt string) (string, error)
 }
 
 // CanRunKubectlCommand checks if the last response had a exec command.
-func (a *Runner) CanRunKubectlCommand() bool {
+func (a *GPT3Runner) CanRunKubectlCommand() bool {
 	// ignore the error we only care about the command
 	command, _ := a.getKubectlCommand()
 	return len(command) > 0
 }
 
 // RunKubectlCommand will run the exec command from the previous response.
-func (a *Runner) RunKubectlCommand() error {
+func (a *GPT3Runner) RunKubectlCommand() error {
 	command, err := a.getKubectlCommand()
 	if err != nil {
 		return err
@@ -71,7 +77,7 @@ func (a *Runner) RunKubectlCommand() error {
 }
 
 // getKubectlCommand will return the kubectl command from a code snippet (wrapped with ```).
-func (a *Runner) getKubectlCommand() (string, error) {
+func (a *GPT3Runner) getKubectlCommand() (string, error) {
 	command, err := findCodeSnippet(a.lastResponse)
 	if err != nil {
 		return "", fmt.Errorf("could not parse last response for a exec command: %w", err)

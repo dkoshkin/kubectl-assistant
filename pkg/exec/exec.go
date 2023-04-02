@@ -9,29 +9,35 @@ import (
 	"strings"
 )
 
-type Runner struct {
+type Runner interface {
+	KubernetesClusterRunning() error
+	Run(command string) error
+	IsKubectlCommand(in string) bool
+}
+
+type BashRunner struct {
 	out io.Writer
 	err io.Writer
 }
 
 func New(out, err io.Writer) Runner {
-	return Runner{out: out, err: err}
+	return BashRunner{out: out, err: err}
 }
 
-func (r Runner) KubernetesClusterRunning() error {
+func (r BashRunner) KubernetesClusterRunning() error {
 	return r.Run("kubectl cluster-info")
 }
 
 // Run will run the command with 'bash -c'.
-func (r Runner) Run(command string) error {
+func (r BashRunner) Run(command string) error {
 	cmd := exec.Command("bash", "-c", command)
 	cmd.Stdout = r.out
 	cmd.Stderr = r.err
 	return cmd.Run()
 }
 
-// IsKubectlCommand returns true if the command starts with "exec "
+// IsKubectlCommand returns true if in starts with "kubectl "
 // TODO: make this check more robust.
-func (r Runner) IsKubectlCommand(command string) bool {
-	return strings.HasPrefix(command, "kubectl ")
+func (r BashRunner) IsKubectlCommand(in string) bool {
+	return strings.HasPrefix(in, "kubectl ")
 }
