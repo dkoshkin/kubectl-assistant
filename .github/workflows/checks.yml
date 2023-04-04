@@ -46,6 +46,12 @@ jobs:
         uses: endorama/asdf-parse-tool-versions@v1
         id: versions
 
+      - name: github-actions-lint
+        uses: reviewdog/action-actionlint@v1
+        with:
+          fail_on_error: true
+          reporter: github-pr-review
+
       - name: golangci-lint
         uses: reviewdog/action-golangci-lint@v2
         with:
