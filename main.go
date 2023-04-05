@@ -18,7 +18,7 @@ import (
 
 const (
 	//nolint:gosec // Not a hardcoded credentials
-	apiKeyEnv = "OPENAI_API_KEY"
+	apiKeyEnv = "OPENAI_KEY"
 )
 
 func main() {
@@ -30,7 +30,7 @@ func main() {
 	apiKey := os.Getenv(apiKeyEnv)
 	if apiKey == "" {
 		log.Fatalln(
-			"API_KEY with OpenAI key is not set, visit https://platform.openai.com/account/api-keys to create one.",
+			"OPENAI_KEY with OpenAI key is not set, visit https://platform.openai.com/account/api-keys to create one.",
 		)
 	}
 
