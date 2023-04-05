@@ -1,6 +1,8 @@
 # Copyright 2023 Dimitri Koshkin. All rights reserved.
 # SPDX-License-Identifier: Apache-2.0
 
+export GOMODULENAME ?= $(shell go list -m)
+
 GORELEASER_PARALLELISM ?= $(shell nproc --ignore=1)
 GORELEASER_DEBUG ?= false
 

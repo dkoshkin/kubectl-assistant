@@ -32,6 +32,15 @@ builds:
     ldflags:
       - -s
       - -w
+      - -X {{.Env.GOMODULENAME}}/pkg/version.version={{.Version}}
+      - -X {{.Env.GOMODULENAME}}/pkg/version.major={{.Major}}
+      - -X {{.Env.GOMODULENAME}}/pkg/version.minor={{.Minor}}
+      - -X {{.Env.GOMODULENAME}}/pkg/version.patch={{.Patch}}
+      - -X {{.Env.GOMODULENAME}}/pkg/version.revision={{.FullCommit}}
+      - -X {{.Env.GOMODULENAME}}/pkg/version.commitDate={{.CommitDate}}
+      - -X {{.Env.GOMODULENAME}}/pkg/version.branch={{.Branch}}
+      - -X {{.Env.GOMODULENAME}}/pkg/version.gitTreeState={{.Env.GIT_TREE_STATE}}
+      - -X {{.Env.GOMODULENAME}}/pkg/version.builtBy=goreleaser
     goos:
       - linux
       - windows

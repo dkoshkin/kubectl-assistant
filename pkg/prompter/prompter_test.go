@@ -55,6 +55,7 @@ k
 
 	// expect a call to exec.Run("kubectl get nodes") in assistant.RunKubectlCommand() is called
 	mockAssistantRunner.EXPECT().RunKubectlCommand().DoAndReturn(func() error {
+		//nolint:wrapcheck // Want to return the error as is in the mock.
 		return mockExecRunner.Run("kubectl get nodes")
 	})
 	mockAssistantRunner.EXPECT().

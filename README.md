@@ -12,7 +12,6 @@ It aims to help find `kubectl` commands for what you are trying to accomplish, w
 
 - A running Kubernetes cluster
 - [kubectl](https://kubernetes.io/docs/reference/kubectl/) in your `PATH`
-- [asdf](https://asdf-vm.com/) and `make` for building locally.
 
 ## Usage Instructions
 
@@ -78,22 +77,37 @@ After typing in a question in the prompt you will see a response, many of them h
 
 -   Type in `kubectl ...` commands directly to have them execute against the cluster.
 
-## Dev Instructions
+## Setup your Dev Environment
 
--   Built it, the binary for your OS will be placed in `./dist`, e.g. `./dist/kubectl-assistant_darwin_arm64/kubectl-assisant`:
+- Install [asdf](https://github.com/asdf-community/asdf-direnv)
+- Install [asdf-direnv](https://github.com/asdf-community/asdf-direnv#setup)
+- Add a global `direnv` version with: `asdf global direnv latest`
+- Install all tools with: `make install-tools`
 
-    ```shell
-    make build-snapshot
-    ```
+Tip: to see all available make targets with descriptions, simply run `make`.
 
--   Test it:
+### Lint
 
-    ```shell
-    make test
-    ```
+```bash
+make lint
+```
 
--   Lint it:
+### Test
 
-    ```shell
-    make lint
-    ```
+```bash
+make tst
+```
+
+### Build
+
+The binary for your OS will be placed in `./dist`, e.g. `./dist/kubectl-assistant_darwin_arm64/kubectl-assisant`:
+
+```bash
+make build-snapshot
+```
+
+### Pre-commit
+
+```bash
+make pre-commit
+```

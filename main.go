@@ -14,6 +14,7 @@ import (
 	"github.com/dkoshkin/kubectl-assistant/pkg/assistant"
 	"github.com/dkoshkin/kubectl-assistant/pkg/exec"
 	"github.com/dkoshkin/kubectl-assistant/pkg/prompter"
+	"github.com/dkoshkin/kubectl-assistant/pkg/version"
 )
 
 const (
@@ -22,6 +23,12 @@ const (
 )
 
 func main() {
+	if len(os.Args) > 1 &&
+		(os.Args[1] == "version" || os.Args[1] == "-v" || os.Args[1] == "--version") {
+		fmt.Println(version.Print())
+		os.Exit(0)
+	}
+
 	executor := exec.New(io.Discard, os.Stderr)
 	if err := executor.KubernetesClusterRunning(); err != nil {
 		log.Fatalln("Is a Kubernetes cluster running?")

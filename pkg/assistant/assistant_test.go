@@ -37,6 +37,8 @@ func Test_findCodeSnippet(t *testing.T) {
 			name: "response without a command",
 			//nolint:lll // Long lines are fine in tests
 			response: "Kubernetes is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It enables operators to manage applications across multiple nodes, and provides mechanisms for the automated deployment, scaling, and recovery of instances of those applications.",
+			// TODO: don't use dynamic errors.
+			//nolint:goerr113 // No need to return a custom error.
 			expectedErr: fmt.Errorf(
 				"did not find opening string in previous output, looking for: ```bash, ```shell, ```",
 			),

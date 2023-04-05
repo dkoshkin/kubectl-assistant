@@ -33,6 +33,7 @@ func (r BashRunner) Run(command string) error {
 	cmd := exec.Command("bash", "-c", command)
 	cmd.Stdout = r.out
 	cmd.Stderr = r.err
+	//nolint:wrapcheck // Want to return the error as is.
 	return cmd.Run()
 }
 
