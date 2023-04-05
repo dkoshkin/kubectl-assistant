@@ -8,27 +8,46 @@ run:
 linters:
   disable-all: true
   enable:
+    - asciicheck
+    - bodyclose
     - containedctx
     - contextcheck
     - depguard
+    - dogsled
+    - dupl
     - errcheck
     - errchkjson
     - errname
+    - exhaustive
+    - exportloopref
+    - funlen
+    - gochecknoglobals
     - gochecknoinits
     - gci
     - goconst
     - gocritic
     - gocyclo
     - godot
+    - goerr113
+    - gofmt
     - gofumpt
+    - goimports
+    - gomnd
+    - goprintffuncname
     - gosec
     - gosimple
     - govet
     - ineffassign
     - lll
+    - makezero
     - misspell
+    - nakedret
+    - nestif
+    - noctx
     - nolintlint
     - prealloc
+    - predeclared
+    - revive
     - staticcheck
     - stylecheck
     - tenv
@@ -39,6 +58,7 @@ linters:
     - unparam
     - unused
     - whitespace
+    - wrapcheck
 
 linters-settings:
   depguard:

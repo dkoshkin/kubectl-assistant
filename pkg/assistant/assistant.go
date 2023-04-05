@@ -5,6 +5,7 @@ package assistant
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"strings"
 
@@ -52,7 +53,7 @@ func (a *GPT3Runner) GetResponse(ctx context.Context, prompt string) (string, er
 		},
 	})
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("could not get response from OpenAI: %w", err)
 	}
 
 	a.lastResponse = resp.Choices[0].Message.Content
@@ -73,6 +74,7 @@ func (a *GPT3Runner) RunKubectlCommand() error {
 	if err != nil {
 		return err
 	}
+	//nolint:wrapcheck // Want to return the error as is.
 	return a.execRunner.Run(command)
 }
 
@@ -84,7 +86,8 @@ func (a *GPT3Runner) getKubectlCommand() (string, error) {
 	}
 
 	if !a.execRunner.IsKubectlCommand(command) {
-		return "", fmt.Errorf("command doesn't appear to be a exec command")
+		//nolint:goerr113 // No need to return a custom error.
+		return "", errors.New("command doesn't appear to be a exec command")
 	}
 
 	return command, nil
@@ -117,6 +120,7 @@ func findSnippetOpening(str string) (int, error) {
 		}
 	}
 	if start == -1 {
+		//nolint:goerr113 // No need to return a custom error.
 		return start, fmt.Errorf(
 			"did not find opening string in previous output, looking for: %s",
 			strings.Join(validStarts, ", "),
@@ -128,6 +132,7 @@ func findSnippetOpening(str string) (int, error) {
 
 func findSnippetClosing(str string) (int, error) {
 	end := strings.Index(str, "```")
+	//nolint:goerr113 // No need to return a custom error.
 	if end == -1 {
 		return end, fmt.Errorf("did not find closing ``` in previous output")
 	}
