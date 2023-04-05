@@ -85,3 +85,21 @@ jobs:
           extra_args: --all-files --show-diff-on-failure
         env:
           SKIP: no-commit-to-branch,golangci-lint
+
+  build-and-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v3
+
+      - name: Install tools via asdf
+        uses: asdf-vm/actions/install@v2.1.0
+        with:
+          asdf_branch: v0.11.2
+
+      - name: Build
+        run: make build-snapshot
+
+      - name: Run binary
+        run: |
+          ./dist/kubectl-assistant_linux_amd64_v1/kubectl-assistant --version
