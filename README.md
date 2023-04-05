@@ -25,7 +25,7 @@ It aims to help find `kubectl` commands for what you are trying to accomplish, w
 4.  Run `kubectl assistant`
 
     ```txt
-    $ export OPENAI_API_KEY=<>
+    $ export OPENAI_KEY=<>
     $ kubectl assistant
     Begin by typing what you want to accomplish in your Kubernetes cluster and then hit "Enter".
     For example:
