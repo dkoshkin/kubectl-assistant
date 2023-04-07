@@ -18,7 +18,6 @@ import (
 )
 
 const (
-	//nolint:gosec // Not a hardcoded credentials
 	apiKeyEnv = "OPENAI_KEY"
 )
 
