@@ -4,6 +4,18 @@
 
 ## What's Changed
 ### Other Changes
+* ci: Run actionlint in CI by @dkoshkin in https://github.com/dkoshkin/kubectl-assistant/pull/27
+* build: Cleanup tooling and dev docs by @dkoshkin in https://github.com/dkoshkin/kubectl-assistant/pull/29
+
+
+**Full Changelog**: https://github.com/dkoshkin/kubectl-assistant/compare/v0.1.5...v0.1.6
+
+## Changelog
+
+<!-- Release notes generated using configuration in .github/release.yaml at main -->
+
+## What's Changed
+### Other Changes
 * ci: Fix asdf setup in Github Actions by @dkoshkin in https://github.com/dkoshkin/kubectl-assistant/pull/25
 
 
