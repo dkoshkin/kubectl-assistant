@@ -76,7 +76,7 @@ jobs:
           check-latest: false
           cache: true
 
-      - uses: mfinelli/setup-shfmt@v2
+      - uses: mfinelli/setup-shfmt@v3
         with:
           shfmt-version: ${{ fromJson(steps.versions.outputs.tools).shfmt }}
 
