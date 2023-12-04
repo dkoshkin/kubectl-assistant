@@ -6,7 +6,7 @@ module github.com/dkoshkin/kubectl-assistant
 go 1.20
 
 require (
-	github.com/PullRequestInc/go-gpt3 v1.1.18
+	github.com/PullRequestInc/go-gpt3 v1.2.0
 	github.com/golang/mock v1.6.0
 	github.com/stretchr/testify v1.8.4
 	golang.org/x/term v0.14.0
