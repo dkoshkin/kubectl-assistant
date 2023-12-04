@@ -20,7 +20,7 @@ jobs:
     outputs:
       release_created: ${{ steps.release-please.outputs.release_created }}
     steps:
-      - uses: google-github-actions/release-please-action@v3.7
+      - uses: google-github-actions/release-please-action@v4.0
         id: release-please
         with:
           release-type: go
